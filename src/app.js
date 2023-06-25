@@ -1,12 +1,20 @@
 require('dotenv').config()
 
+// APP
 const express = require('express')
+const app = express()
+
+// CORS
 const cors = require('cors')
+const corsOptions = {
+  origin: 'https://olhar180-fontend-desafio.vercel.app',
+  optionsSuccessStatus: 200, // Algumas versões do CORS exigem esse campo
+}
+app.use(cors(corsOptions))
+
 const { sequelize } = require('./models/IndexModel')
 
 const port = process.env.PORT
-
-const app = express()
 
 app.use(express.json())
 
@@ -26,11 +34,3 @@ sequelize
   .catch((error) => {
     console.error('Ocorreu um erro: ', error)
   })
-
-// CORS
-const corsOptions = {
-  origin: 'https://olhar180-fontend-desafio.vercel.app',
-  optionsSuccessStatus: 200, // Algumas versões do CORS exigem esse campo
-}
-
-app.use(cors(corsOptions))
