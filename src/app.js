@@ -30,7 +30,7 @@ sequelize
 // CORS
 app.use(
   cors({
-    credentials: true,
+    credentials: false,
     // origin: 'https://urlverceldeploy.vercel.app',
     origin: 'http://127.0.0.1:5173',
   }),
