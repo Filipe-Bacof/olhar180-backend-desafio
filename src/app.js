@@ -32,5 +32,7 @@ app.use(
   cors({
     credentials: true,
     origin: 'https://olhar180-fontend-desafio.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   }),
 )
