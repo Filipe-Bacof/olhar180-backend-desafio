@@ -8,7 +8,8 @@ const app = express()
 const cors = require('cors')
 const corsOptions = {
   origin: 'https://olhar180-fontend-desafio.vercel.app',
-  optionsSuccessStatus: 200, // Algumas versões do CORS exigem esse campo
+  optionsSuccessStatus: 200,
+  credentials: true,
 }
 app.use(cors(corsOptions))
 
