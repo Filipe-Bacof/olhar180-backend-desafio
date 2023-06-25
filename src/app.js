@@ -28,4 +28,9 @@ sequelize
   })
 
 // CORS
-app.use(cors())
+const corsOptions = {
+  origin: 'https://olhar180-fontend-desafio.vercel.app',
+  optionsSuccessStatus: 200 // Algumas versões do CORS exigem esse campo
+}
+
+app.use(cors(corsOptions));
