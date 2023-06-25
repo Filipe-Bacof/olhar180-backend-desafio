@@ -31,7 +31,6 @@ sequelize
 app.use(
   cors({
     credentials: true,
-    // origin: 'https://urlverceldeploy.vercel.app',
-    origin: 'http://localhost:5173',
+    origin: 'https://olhar180-fontend-desafio.vercel.app',
   }),
 )
