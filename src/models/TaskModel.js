@@ -11,6 +11,9 @@ const task = (sequelize, DataTypes) => {
       conclusionDate: {
         type: DataTypes.DATE,
       },
+      completed: {
+        type: DataTypes.INTEGER,
+      },
       priority: {
         type: DataTypes.STRING,
       },

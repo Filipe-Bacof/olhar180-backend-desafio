@@ -23,6 +23,7 @@ router.get('/tasks', verifyTokenJwt, TaskController.index)
 router.get('/tasks/:id', verifyTokenJwt, TaskController.show)
 router.post('/tasks', verifyTokenJwt, TaskController.store)
 router.put('/tasks/:id', verifyTokenJwt, TaskController.update)
+router.patch('/tasks/:id', verifyTokenJwt, TaskController.updateCompleted)
 router.delete('/tasks/:id', verifyTokenJwt, TaskController.delete)
 
 module.exports = router

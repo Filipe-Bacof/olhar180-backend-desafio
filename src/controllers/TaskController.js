@@ -53,6 +53,7 @@ class TaskController {
         title,
         description,
         conclusionDate,
+        completed: 0,
         priority,
         userId,
       })
@@ -68,7 +69,8 @@ class TaskController {
 
   async update(req, res) {
     const { id } = req.params
-    const { title, description, conclusionDate, priority, userId } = req.body
+    const { title, description, conclusionDate, completed, priority, userId } =
+      req.body
     try {
       const updatedTask = await task.findByPk(id)
       if (!updatedTask) {
@@ -78,6 +80,7 @@ class TaskController {
       title && (updatedTask.title = title)
       description && (updatedTask.description = description)
       conclusionDate && (updatedTask.conclusionDate = conclusionDate)
+      completed && (updatedTask.completed = completed)
       priority && (updatedTask.priority = priority)
       userId && (updatedTask.userId = userId)
 
@@ -86,6 +89,29 @@ class TaskController {
       return res
         .status(200)
         .json({ message: 'Tarefa atualizada com sucesso!', updatedTask })
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: 'Houve um problema ao atualizar a tarefa.' })
+    }
+  }
+
+  async updateCompleted(req, res) {
+    const { id } = req.params
+    const { completed } = req.body
+    try {
+      const updatedTask = await task.findByPk(id)
+      if (!updatedTask) {
+        return res.status(404).json({ message: 'Tarefa não encontrada.' })
+      }
+
+      updatedTask.completed = completed
+
+      await updatedTask.save()
+
+      return res
+        .status(200)
+        .json({ message: 'Tarefa concluída com sucesso!', updatedTask })
     } catch (error) {
       return res
         .status(500)
