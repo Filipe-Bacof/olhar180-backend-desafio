@@ -95,6 +95,22 @@ Em vez de utilizar JavaScript vanilla, preferi o uso do TypeScript no front-end 
     "password": "Sua senha"
   }
   ```
+  - Retorno da API:
+  ```
+  {
+    "message": "Usuário logado com sucesso",
+    "user": {
+        "id": 1,
+        "name": "name",
+        "surname": "surname",
+        "email": "email",
+        "githubUrl": "githubUrl",
+        "passwordResetExpires": null,
+        "passwordResetToken": null
+    },
+    "token": "Token JWT"
+  }
+  ```
 - **POST** `URL/auth/forgot`
   - Solicitar token por e-mail - caso tenha esquecido a senha de acesso ao sistema;
   - Body:

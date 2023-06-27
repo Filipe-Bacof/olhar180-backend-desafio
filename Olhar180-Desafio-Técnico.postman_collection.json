@@ -51,7 +51,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Título da Tarefa\",\r\n    \"description\": \"Descrição da Tarefa\",\r\n    \"conclusionDate\": 1687597593079,\r\n    \"priority\": \"alta\",\r\n    \"userId\": 1\r\n}",
+							"raw": "{\r\n    \"title\": \"Teste\",\r\n    \"description\": \"Descrição da Tarefa\",\r\n    \"conclusionDate\": 1687597593079,\r\n    \"priority\": \"alta\",\r\n    \"userId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -190,7 +190,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\",\r\n    \"password\": \"123123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -244,7 +244,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"token\": \"\"\r\n}",
+							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"token\": \"c42b43d6c0092c79fea1a92be88c096d452ab669\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -369,7 +369,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODc4MzMxMTcsImV4cCI6MTY4NzkxOTUxN30.jn-WLGWdaMVPlqRJ_uhVaPYWfNLK-jfHxHYCLhSSWTE",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODc4NjQzNjAsImV4cCI6MTY4Nzk1MDc2MH0.hF0F6qKBB5l-0XEyMcXY09as8QAMxUe_LEYefi7l40Q",
 				"type": "string"
 			}
 		]
@@ -397,7 +397,7 @@
 	"variable": [
 		{
 			"key": "URL",
-			"value": "http://localhost:3004"
+			"value": "https://olhar180-backend-desafio-production.up.railway.app"
 		}
 	]
 }
