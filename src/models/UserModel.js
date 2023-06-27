@@ -17,6 +17,12 @@ const user = (sequelize, DataTypes) => {
       githubUrl: {
         type: DataTypes.STRING,
       },
+      passwordResetToken: {
+        type: DataTypes.STRING,
+      },
+      passwordResetExpires: {
+        type: DataTypes.DATE,
+      },
     },
     {
       tableName: 'user',

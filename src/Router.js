@@ -4,6 +4,7 @@ const router = express.Router()
 const UserController = require('./controllers/UserController')
 const TaskController = require('./controllers/TaskController')
 const verifyTokenJwt = require('./middlewares/verifyTokenJwt')
+const verifyTokenForgotPass = require('./middlewares/verifyTokenForgotPass')
 
 // Test Route
 router.get('/', (_request, response) => {
@@ -13,6 +14,8 @@ router.get('/', (_request, response) => {
 // User Routes
 router.post('/auth/register', UserController.register)
 router.post('/auth/login', UserController.login)
+router.post('/auth/forgot', UserController.forgot)
+router.post('/auth/newpass', verifyTokenForgotPass, UserController.newPass)
 router.get('/users', verifyTokenJwt, UserController.index)
 router.get('/users/:id', verifyTokenJwt, UserController.show)
 router.put('/users/:id', verifyTokenJwt, UserController.update)

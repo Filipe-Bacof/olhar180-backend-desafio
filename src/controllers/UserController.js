@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+const crypto = require('crypto')
 const { user, task } = require('../models/IndexModel')
+const mailer = require('../modules/mailer')
 
 class UserController {
   async index(req, res) {
@@ -126,17 +128,22 @@ class UserController {
 
       const { id, name, surname, email, githubUrl } = currentUser
 
-      res.status(200).cookie('token', token, { httpOnly: true }).json({
-        message: 'Usuário logado com sucesso',
-        user: {
-          id,
-          name,
-          surname,
-          email,
-          githubUrl,
-        },
-        token,
-      })
+      res
+        .status(200)
+        .cookie('token', token, { httpOnly: true })
+        .json({
+          message: 'Usuário logado com sucesso',
+          user: {
+            id,
+            name,
+            surname,
+            email,
+            githubUrl,
+            passwordResetExpires: null,
+            passwordResetToken: null,
+          },
+          token,
+        })
     } catch (err) {
       res.send(500).json('Algo deu errado com o login.')
     }
@@ -189,6 +196,81 @@ class UserController {
       return res
         .status(500)
         .json({ message: 'Houve um problema ao excluir o usuário.' })
+    }
+  }
+
+  async forgot(req, res) {
+    const { email } = req.body
+
+    try {
+      const foundUser = await user.findOne({
+        where: {
+          email,
+        },
+      })
+
+      if (!foundUser) {
+        res.status(400).json({ message: 'Usuário não encontrado' })
+      }
+      const token = crypto.randomBytes(20).toString('hex')
+      const now = new Date()
+
+      foundUser.passwordResetToken = token
+      foundUser.passwordResetExpires = now.setHours(now.getHours() + 1)
+
+      await foundUser.save()
+
+      mailer.sendMail(
+        {
+          to: email,
+          from: "'Acesso ao Gerenciador de Tarefas' <portifolionext@gmail.com>",
+          subject: 'Token para resetar a senha',
+          html: `<h1>Recuperação de Senha Gerenciador de tarefas</h1> <p>Para redefinir sua senha, utilize este token: ${token}</p>`,
+        },
+        (err) => {
+          if (err)
+            return res
+              .status(400)
+              .json({ message: 'Não foi enviado o email com o token', err })
+
+          return res.status(200).json({ message: 'Email Enviado' })
+        },
+      )
+    } catch (err) {
+      console.log(err)
+      res.status(400).json({
+        message: 'Erro ao tentar recuperar a senha, tente novamente!',
+      })
+    }
+  }
+
+  async newPass(req, res) {
+    const { email, password } = req.body
+
+    try {
+      const foundUser = await user.findOne({
+        where: {
+          email,
+        },
+      })
+
+      if (!foundUser) {
+        res.status(400).json({ message: 'Usuário não encontrado' })
+      }
+
+      const salt = await bcrypt.genSalt(12)
+      const passwordHash = await bcrypt.hash(password, salt)
+
+      foundUser.password = passwordHash
+
+      await foundUser.save()
+
+      return res.status(200).json({ message: 'Senha atualizada.' })
+    } catch (err) {
+      console.log(err)
+      res.status(400).json({
+        message: 'Erro ao tentar recuperar a senha, tente novamente!',
+      })
     }
   }
 }
