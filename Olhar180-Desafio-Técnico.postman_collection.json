@@ -211,6 +211,60 @@
 					"response": []
 				},
 				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/forgot",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"forgot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate New Pass",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"filipebacof@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"token\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/newpass",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"newpass"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get All",
 					"request": {
 						"method": "GET",
@@ -315,7 +369,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODc3NDE5MjcsImV4cCI6MTY4NzgyODMyN30.7GcFBBWCAU8Z8cp2GBctHebqTcXSZe3KaWR4ByCnCDs",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODc4MzMxMTcsImV4cCI6MTY4NzkxOTUxN30.jn-WLGWdaMVPlqRJ_uhVaPYWfNLK-jfHxHYCLhSSWTE",
 				"type": "string"
 			}
 		]
