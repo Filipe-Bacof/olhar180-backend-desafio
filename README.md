@@ -1,7 +1,7 @@
 # Desafio Técnico Olhar 180
 
-#### [Front-End Repositório](https://github.com/Filipe-Bacof/olhar180-fontend-desafio)
-#### [Front-End Deploy](https://olhar180-fontend-desafio.vercel.app)
+#### [Front-End Repositório](https://github.com/Filipe-Bacof/olhar180-frontend-desafio)
+#### [Front-End Deploy](https://olhar180-frontend-desafio.vercel.app)
 <div style="justify-content: space-around;">
   <img alt="REACT.JS" height="70" width="70" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png" />
   <img alt="Vite-Dev" height="70" width="70" src="https://pt.vitejs.dev/logo.svg" />
@@ -71,20 +71,106 @@ Em vez de utilizar JavaScript vanilla, preferi o uso do TypeScript no front-end 
   - Agora você poderá efetuar as requisições que eu configurei para a API;
 
 ## Todos os EndPoints:
-- `URL/`
-  - Rota GET apenas para testar, no navegador ela exibe "Essa é uma rota de teste! A API está funcionando";
-- `URL/auth/register`
-  - POST para cadastrar um novo usuário;
-- `URL/auth/login`
-  - POST para fazer login com um usuário cadastrado;
-- `URL/auth/forgot`
-  - POST para solicitar token por email - caso tenha esquecido a senha de acesso ao sistema;
-- `URL/auth/newpass`
-  - POST atualizar a senha do cadastro - é necessário informar o token da rota **/auth/forgot**;
-- `URL/tasks`
-  - Endpoint padrão para o CRUD de usuários;
-- `URL/users`
-  - Endpoint padrão para o CRUD de perfís;
+- Endpoint base: `https://olhar180-backend-desafio-production.up.railway.app`
+- **GET** `URL/`
+  - Rota para testar apenas, no navegador ela exibe "Essa é uma rota de teste! A API está funcionando";
+- **POST** `URL/auth/register`
+  - Cadastrar um novo usuário;
+  - Body:
+  ```
+  {
+    "name": "Seu nome",
+    "surname": "Seu sobrenome",
+    "email": "Seu e-mail", // Utilizado para fazer login
+    "githubUrl": "https://github.com/Seu-Usuário" // PARAMETRO OPICIONAL
+    "password": "Sua senha"
+  }
+  ```
+- **POST** `URL/auth/login`
+  - Fazer login com um usuário cadastrado;
+  - Body:
+  ```
+  {
+    "email": "Seu e-mail",
+    "password": "Sua senha"
+  }
+  ```
+- **POST** `URL/auth/forgot`
+  - Solicitar token por e-mail - caso tenha esquecido a senha de acesso ao sistema;
+  - Body:
+  ```
+  {
+    "email": "Seu e-mail"
+  }
+  ```
+- **POST** `URL/auth/newpass`
+  - Atualizar a senha do cadastro - é necessário informar o token da rota **/auth/forgot**;
+  - Body:
+  ```
+  {
+    "email": "Seu e-mail",
+    "password": "Sua senha",
+    "token": "Token recebido no e-mail" // Exemplo: c42b43d6c0092c79fea1a92be88c096d452ab669
+  }
+  ```
+- **GET** `URL/tasks`
+  - Visualizar todas as tarefas;
+- **GET** `URL/tasks/:id`
+  - Visualizar uma tarefa através do ID;
+- **POST** `URL/tasks`
+  - Criar uma nova tarefa;
+  - Body:
+  ```
+  {
+    "title": "Título da tarefa",
+    "description": "Descrição da tarefa",
+    "conclusionDate": 1687597593079, // Data em timestamp
+    "priority": "alta",
+    "userId": 1
+  }
+  ```
+- **PUT** `URL/tasks/:id`
+  - Editar uma tarefa existente;
+  - *Todos os parâmetros do body são opicionais*;
+  - Body:
+  ```
+  {
+    "title": "Título da tarefa",
+    "description": "Descrição da tarefa",
+    "conclusionDate": 1687597593079, // Data em timestamp
+    "completed": 1, // 0 para não-concluída E 1 para concluída
+    "priority": "baixa"
+  }
+  ```
+- **PATCH** `URL/tasks/:id`
+  - Atualizar tarefa completada;
+  - Body:
+  ```
+  {
+    "completed": 1 // 0 para não-concluída E 1 para concluída
+  }
+  ```
+- **DELETE** `URL/tasks/:id`
+  - Deletar uma tarefa;
+- **GET** `URL/users`
+  - Visualizar todos os usuários;
+- **GET** `URL/users/:id`
+  - Visualizar um usuário através do ID;
+- **PUT** `URL/users/:id`
+  - Editar um usuário existente;
+  - *Todos os parâmetros do body são opicionais*;
+  - Body:
+  ```
+  {
+    "name": "Seu nome",
+    "surname": "Seu sobrenome",
+    "email": "Seu e-mail",
+    "githubUrl": "https://github.com/Seu-Usuário"
+    "password": "Sua senha"
+  }
+  ```
+- **DELETE** `URL/users/:id`
+  - Deletar um usuário;
 
 ## Informações Importantes:
 - A fim de garantir o funcionamento correto do projeto, é necessário configurar as variáveis de ambiente. Essas configurações permitirão que a aplicação estabeleça conexão com o banco de dados e realize a autenticação de usuários usando JWT (JSON Web Tokens), entre outras funcionalidades.

@@ -7,7 +7,7 @@ const app = express()
 // CORS
 const cors = require('cors')
 const corsOptions = {
-  origin: 'https://olhar180-fontend-desafio.vercel.app',
+  origin: 'https://olhar180-frontend-desafio.vercel.app',
   optionsSuccessStatus: 200,
   credentials: true,
 }
