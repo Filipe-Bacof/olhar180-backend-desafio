@@ -23,6 +23,19 @@
 ### Aplicações desenvolvidas nos dias 24, 25, 26 de Junho de 2023.
 ## [Ver Portifólio Filipe Bacof](https://portifolio-filipe-bacof.vercel.app/)
 
+## Prints do Projeto:
+- Tema Claro
+<img src="./prints/print-1.png" alt="print1">
+
+- Tema Escuro
+<img src="./prints/print-2.png" alt="print2">
+
+- Formulário de Cadastro (tema claro)
+<img src="./prints/print-3.png" alt="print3">
+
+- Formulário para gerar nova senha (tema escuro)
+<img src="./prints/print-4.png" alt="print4">
+
 ## Ferramentas Utilizadas
 Aqui estão algumas informações sobre as ferramentas utilizadas neste projeto:
 - `Arquitetura Back-End`: O projeto segue o paradigma de Programação Orientada a Objetos (POO) e utiliza o design pattern **Singleton**.
@@ -64,6 +77,10 @@ Em vez de utilizar JavaScript vanilla, preferi o uso do TypeScript no front-end 
   - POST para cadastrar um novo usuário;
 - `URL/auth/login`
   - POST para fazer login com um usuário cadastrado;
+- `URL/auth/forgot`
+  - POST para solicitar token por email - caso tenha esquecido a senha de acesso ao sistema;
+- `URL/auth/newpass`
+  - POST atualizar a senha do cadastro - é necessário informar o token da rota **/auth/forgot**;
 - `URL/tasks`
   - Endpoint padrão para o CRUD de usuários;
 - `URL/users`
@@ -77,5 +94,6 @@ Em vez de utilizar JavaScript vanilla, preferi o uso do TypeScript no front-end 
 A seguir estão algumas das implementações extras que foram realizadas no projeto:
 - `Atendimento aos Requisitos`: Procurei seguir os requisitos conforme descritos no enunciado do desafio, efetuando melhorias adicionais conforme especificado neste documento.
 - `Sistema de Login com JWT`: Foi implementado um sistema de autenticação utilizando JSON Web Tokens (JWT). Isso permite que os usuários façam login de forma segura na plataforma.
+- `Recuperação de senha com Nodemailer`: Adicionei um sistema para recuperação de senha utilizando a biblioteca Nodemailer. Isso permite que os usuários gerem uma nova senha para fazer login no sistema, utilizei o e-mail do meu portifólio que já estava configurado para envio de email por SMTP.
 - `Tema Claro e Escuro`: Adicionei a funcionalidade de escolher entre um tema claro e um tema escuro na plataforma. Os usuários têm a opção de personalizar a aparência de acordo com suas preferências.
 - `Utilização da API do GitHub`: Integrei a API do GitHub para obter a foto de perfil do usuário. Na plataforma é exibida a foto de perfil do usuário conectado, caso cadastre a URL do seu perfil no github.
