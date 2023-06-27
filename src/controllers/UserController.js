@@ -128,7 +128,7 @@ class UserController {
 
       const { id, name, surname, email, githubUrl } = currentUser
 
-      res
+      return res
         .status(200)
         .cookie('token', token, { httpOnly: true })
         .json({
@@ -145,7 +145,7 @@ class UserController {
           token,
         })
     } catch (err) {
-      res.send(500).json('Algo deu errado com o login.')
+      return res.send(500).json('Algo deu errado com o login.')
     }
   }
 
@@ -209,8 +209,8 @@ class UserController {
         },
       })
 
-      if (!foundUser) {
-        res.status(400).json({ message: 'Usuário não encontrado' })
+      if (!foundUser || foundUser == null) {
+        return res.status(400).json({ message: 'Usuário não encontrado' })
       }
       const token = crypto.randomBytes(20).toString('hex')
       const now = new Date()
@@ -238,7 +238,7 @@ class UserController {
       )
     } catch (err) {
       console.log(err)
-      res.status(400).json({
+      return res.status(400).json({
         message: 'Erro ao tentar recuperar a senha, tente novamente!',
       })
     }
@@ -254,8 +254,8 @@ class UserController {
         },
       })
 
-      if (!foundUser) {
-        res.status(400).json({ message: 'Usuário não encontrado' })
+      if (!foundUser || foundUser == null) {
+        return res.status(400).json({ message: 'Usuário não encontrado' })
       }
 
       const salt = await bcrypt.genSalt(12)
@@ -268,7 +268,7 @@ class UserController {
       return res.status(200).json({ message: 'Senha atualizada.' })
     } catch (err) {
       console.log(err)
-      res.status(400).json({
+      return res.status(400).json({
         message: 'Erro ao tentar recuperar a senha, tente novamente!',
       })
     }
